@@ -1,5 +1,7 @@
 'use strict';
 
+const webpack = require('webpack');
+
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
@@ -18,6 +20,11 @@ module.exports = {
       patterns: [
         { from: "static" },
       ],
+    }),
+    new webpack.DefinePlugin({
+      'process.env.APP_ID': JSON.stringify(process.env.APP_ID),
+      'process.env.EMAIL_BODY': JSON.stringify(process.env.EMAIL_BODY),
+      'process.env.EMAIL_SIGNATURE': JSON.stringify(process.env.EMAIL_SIGNATURE),
     }),
   ],
 };
